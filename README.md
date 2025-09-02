@@ -1,4 +1,4 @@
-# Part 19: Deploying microservice applications in AKS using Helm Chat and Azure Pipeline(Dynamically update the image tag in values.yaml)
+# Part 21: Deploying microservice applications in AKS using ArgoCD, kustomization and Azure Pipeline
 
     Part1:   Manual Deployment (AzCLI + Docker Desktop + kubectl)  
     GitHub:  https://github.com/santosh-gh/k8s-01
@@ -164,7 +164,7 @@
             Create Argo CD applications using manifests
             Create Argo CD applications using manifests (CRD - ApplicationSet)
     GitHub:  https://github.com/santosh-gh/k8s-18
-    YouTube: https://www.youtube.com/watch?v=GYMY4ZQ7V9o&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=16
+    YouTube: https://www.youtube.com/watch?v=3ppWmlnFP8U&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=18
 
     Part19: ArgoCD (Automate deployment using Azure Pipeline)
             Create Argo CD applications using manifests
@@ -172,7 +172,26 @@
 
     GitHub:  https://github.com/santosh-gh/k8s-19-development.git     
     GitHub:  https://github.com/santosh-gh/k8s-19-deployment.git
-    YouTube: https://www.youtube.com/watch?v=GYMY4ZQ7V9o&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=16
+    YouTube: https://www.youtube.com/watch?v=c6ZZNgKLh6g&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=19
+
+    Part20: ArgoCD (Automate deployment using Azure Pipeline)
+            Create Argo CD applications using manifests 
+            CRD - ApplicationSet
+            Automate deployment using Azure Pipeline
+
+    GitHub:  https://github.com/santosh-gh/k8s-20-development.git     
+    GitHub:  https://github.com/santosh-gh/k8s-20-deployment.git
+    YouTube: https://www.youtube.com/watch?v=bzCk-tDUlZc&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=20
+
+    Part21: ArgoCD (Automate deployment using Azure Pipeline)
+            Create Argo CD applications using manifests 
+            CRD - ApplicationSet
+            Kustomize
+            Automate deployment using Azure Pipeline
+
+    GitHub:  https://github.com/santosh-gh/k8s-21-development.git     
+    GitHub:  https://github.com/santosh-gh/k8s-21-deployment.git
+    YouTube: https://www.youtube.com/watch?v=bzCk-tDUlZc&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=20
 
 # Architesture
 

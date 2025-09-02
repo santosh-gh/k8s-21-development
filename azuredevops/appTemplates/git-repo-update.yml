@@ -20,7 +20,7 @@ jobs:
               clean: true
 
             - task: Bash@3
-              displayName: Update GitOps Repo
+              displayName: Update GitOps Repo-${{parameters.environment}}
               inputs:
                 targetType: inline
                 script: |
