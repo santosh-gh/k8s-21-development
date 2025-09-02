@@ -34,12 +34,12 @@ jobs:
                     if [ "${{parameters.serviceName}}" != "rabbitmq" ]; then
                       
                       echo "Updating deployment files with image tags..."
-                      sed -i "s|acronlinestoredevuksouth001.azurecr.io/${{parameters.serviceName}}|${{parameters.acrName}}.azurecr.io/${{parameters.serviceName}}:${{parameters.imageTag}}|g"  kustomize-manifests/${{parameters.serviceName}}/base/deployment.yaml                  
+                      sed -i "s|acronlinestoredevuksouth001.azurecr.io/${{parameters.serviceName}}|acronlinestoredevuksouth001.azurecr.io/${{parameters.serviceName}}:${{parameters.imageTag}}|g"  kustomize-manifests/${{parameters.serviceName}}/base/deployment.yaml                  
                       cat kustomize-manifests/${{parameters.serviceName}}/base/deployment.yaml
                     else                     
                       
                       echo "Updating deployment files with image tags..."
-                      sed -i "s|acronlinestoredevuksouth001.azurecr.io/${{parameters.serviceName}}|${{parameters.acrName}}.azurecr.io/${{parameters.serviceName}}:${{parameters.imageTag}}|g"  kustomize-manifests/${{parameters.serviceName}}/base/statefulset.yaml
+                      sed -i "s|acronlinestoredevuksouth001.azurecr.io/${{parameters.serviceName}}|acronlinestoredevuksouth001.azurecr.io/${{parameters.serviceName}}:${{parameters.imageTag}}|g"  kustomize-manifests/${{parameters.serviceName}}/base/statefulset.yaml
                       cat kustomize-manifests/${{parameters.serviceName}}/base/statefulset.yaml
 
                     fi
