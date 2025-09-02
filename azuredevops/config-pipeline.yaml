@@ -1,0 +1,44 @@
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: 'k8s-common'
+
+stages:  
+  - stage: Dev_UpdateGitOps
+    displayName: Update GitOps Repo
+
+    variables:
+      - group: 'k8s-dev'
+    jobs:
+      - template: appTemplates/git-repo-update.yml
+        parameters:           
+            serviceName: $(serviceName)
+            environment: dev
+            imageTag: $(imageTag)
+  
+  - stage: Test_UpdateGitOps
+    displayName: Update GitOps Repo (image tag)
+    dependsOn: Dev_UpdateGitOps
+    variables:
+      - group: 'k8s-test'
+    jobs:
+      - template: appTemplates/git-repo-update.yml
+        parameters:           
+            serviceName: $(serviceName)
+            environment: test
+            imageTag: $(imageTag)
+  
+  - stage: Prod_UpdateGitOps
+    displayName: Update GitOps Repo (image tag)
+    dependsOn: Test_UpdateGitOps
+    variables:
+      - group: 'k8s-prod'
+    jobs:
+      - template: appTemplates/git-repo-update.yml
+        parameters:           
+            serviceName: $(serviceName)
+            environment: prod
+            imageTag: $(imageTag)

@@ -1,0 +1,69 @@
+trigger:
+  paths:
+    include:
+      - app/product-service/**
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: 'k8s-common'
+- name: imageTag
+  value: $(Build.BuildId)
+- name: serviceName
+  value: 'product'
+
+stages:
+  - stage: Build
+    displayName: Build and Publish
+    jobs:
+      - job: BuildPublishDockerImages
+        displayName: Build Publish Docker Images
+        steps:
+          - task: DockerInstaller@0
+            displayName: Install Docker
+            inputs:
+              dockerVersion: '17.09.0-ce'
+
+          - template: appTemplates/build.yml
+            parameters:
+              acrServiceConnection: $(acrServiceConnection)
+              imageName: $(serviceName)
+              dockerFilePath: '$(Build.sourcesdirectory)/app/product-service/Dockerfile'
+              tag: $(imageTag)
+
+  - stage: Dev_UpdateGitOps
+    displayName: Update GitOps Repo (image tag)
+    dependsOn: Build
+    variables:
+      - group: 'k8s-dev'
+    jobs:
+      - template: appTemplates/git-repo-update.yml
+        parameters:           
+            serviceName: $(serviceName)
+            environment: dev
+            imageTag: $(imageTag)
+  
+  - stage: Test_UpdateGitOps
+    displayName: Update GitOps Repo (image tag)
+    dependsOn: Dev_UpdateGitOps
+    variables:
+      - group: 'k8s-test'
+    jobs:
+      - template: appTemplates/git-repo-update.yml
+        parameters:           
+            serviceName: $(serviceName)
+            environment: test
+            imageTag: $(imageTag)
+  
+  - stage: Prod_UpdateGitOps
+    displayName: Update GitOps Repo (image tag)
+    dependsOn: Test_UpdateGitOps
+    variables:
+      - group: 'k8s-prod'
+    jobs:
+      - template: appTemplates/git-repo-update.yml
+        parameters:           
+            serviceName: $(serviceName)
+            environment: prod
+            imageTag: $(imageTag)
